@@ -1,0 +1,11 @@
+{
+  "name": "foobelt",
+  "version": "0.1.1",
+  "description": "Foo's Utility Belt",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "JH Foo",
+  "license": "ISC"
+}
