@@ -1,5 +1,3 @@
 module.exports = {
-    ping: () => {
-        return 'Pong';
-    }
+    ConfigReader: require('./ConfigReader')
 };
