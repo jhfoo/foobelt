@@ -1,6 +1,6 @@
 {
   "name": "foobelt",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "Foo's Utility Belt",
   "main": "src/index.js",
   "homepage": "https://github.com/jhfoo/foobelt",
