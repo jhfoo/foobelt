@@ -3,12 +3,12 @@ Foo's Utility Belt
 
 ## ConfigReader
 ### Parameters
-ConfigReader(filename, RunMode)
+ConfigReader(filename|hash, [RunMode])
 
 - Supports .js and .json file formats
 
 ### Example
-```javascript
+```js
 const foobelt = require('foobelt'),
     Config = foobelt.ConfigReader('./config.js','production');
 ```

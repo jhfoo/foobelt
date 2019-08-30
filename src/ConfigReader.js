@@ -3,20 +3,26 @@ const fs = require('fs'),
 
 module.exports = (ConfigFile, RunMode) => {
     if (!RunMode) {
-        RunMode = 'development';
+        if (process.env.NODE_ENV) {
+            // automatically use NODE_ENV
+            RunMode = process.env.NODE_ENV
+        } else {
+            // default mode
+            RunMode = 'development'
+        }
     }
 
-    let config;
-    if (ConfigFile.match(/\.js$/)) {
-        config = require(path.resolve(process.cwd() + '/' + ConfigFile));
+    let config = null
+    if (isHash(ConfigFile)) {
+        config = ConfigFile
+    } else if (ConfigFile.match(/\.js$/)) {
+        // js format
+        config = require(path.resolve(process.cwd() + '/' + ConfigFile))
     } else {
+        // assume JSON format
         const ConfigFilePath = path.resolve(process.cwd() + '/' + ConfigFile);
         console.log('path: %s', ConfigFilePath);
         config = JSON.parse(fs.readFileSync(ConfigFilePath));
-        // keywords: production, staging, development, default
-        if (!RunMode) {
-            RunMode = process.env.NODE_ENV ? process.env.NODE_ENV : 'default';
-        }
     }
 
     if (config[RunMode]) {
@@ -27,4 +33,8 @@ module.exports = (ConfigFile, RunMode) => {
     }
 
     return config;
-};
+}
+
+function isHash(obj) {
+    return (typeof obj === 'object') && !(obj instanceof Array)
+}
